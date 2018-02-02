@@ -1,5 +1,5 @@
 # How to deal with large ass csv files
-I set it up so that csv files will not be tracked by git so they will not be pushed to github because they are very large. I zipped the csv files together, they are in the `data` folder. Before running any code you need to go to that folder and unzip the files.
+I set it up so that csv files will not be tracked by git so they will not be pushed to github because they are very large. I zipped the `data` folder with all four csv files together. I will email this zipfile to you. Before running any code you need to place the zipfile in the folder and unzip it. Zip files will also not be tracked by git.
 
 If you save a csv file at some point make sure to let the rest of us know so we get the same data.
 
