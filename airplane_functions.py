@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from mpl_toolkits.basemap import Basemap
 import seaborn as sns
 
 
@@ -50,3 +51,25 @@ def plotfunction(df, title, y_label, x_labels=None, simple=True,
     if l != None:
         ax.legend(bbox_to_anchor=l)
     ax.grid(alpha=a)
+
+
+def geo_graph(df, title, bar_label, lim):
+    df.columns = ['delay', 'lat', 'long']
+    airport_name = df.index.values
+    lats = df.lat.values
+    longs = df.long.values
+    delays = df.delay.values
+
+    fig = plt.figure(figsize=(15, 8))
+    m = Basemap(projection='merc', resolution='i',
+               llcrnrlat=25, llcrnrlon=-125,
+               urcrnrlat=50, urcrnrlon=-65)
+    m.fillcontinents(color='grey', zorder=0)
+    m.drawcoastlines(color='black', linewidth=2, zorder=1)
+    m.drawcountries(color='black', linewidth=2, zorder=1)
+    m.drawstates(color='black', linewidth=1, zorder=1)
+    m.scatter(longs, lats, latlon=True, s=250, c=delays, cmap='YlGnBu', alpha=1)
+    plt.title(title, fontsize=30)
+    plt.colorbar(label=bar_label)
+    plt.clim(lim)
+    plt.show()
